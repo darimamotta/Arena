@@ -10,7 +10,7 @@ namespace ArenaProject
     {
         public string message;
         public Arena Arena { get; set; }
-        public List<MilleFighter> MilleFighters { get; set; }
+        public List<Fighter> Fighters { get; set; }
         public List<Team> Teams { get; set; }
         public IPathFinder PathFinder { get; set; }
         public ArenaVisualizer Visualizer { get; set; }
@@ -35,14 +35,15 @@ namespace ArenaProject
         private void ExecuteSimulationStep()
         {
             ArenaVisualizer arenaVisualizer = new ArenaVisualizer();
+
             bool attackRes;
            
-            for (int i = 0; i < MilleFighters.Count; i++)
+            for (int i = 0; i < Fighters.Count; i++)
             {
-                if (MilleFighters[i].IsAlive)
+                if (Fighters[i].IsAlive)
                 { 
-                    MilleFighter fighter = MilleFighters[i];
-                    Fighter target = MilleFighters[i].ChooseTarget(this);                    
+                    Fighter fighter = Fighters[i];
+                    Fighter target = Fighters[i].ChooseTarget(this);                    
                     
                     if (target == null) return;
                     Arena myArena = Arena;
@@ -50,7 +51,8 @@ namespace ArenaProject
                     
                     if (path.Length > 2)
                     {
-                        fighter.MoveToTarget(target,this);                      
+                        fighter.Move(this);
+                        //fighter.MoveToTarget(target,this);                      
                     
                     }
                     if (path.Length == 2)

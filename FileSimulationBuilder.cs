@@ -37,15 +37,17 @@ namespace ArenaProject
       
         public Simulation Build()
         {     
-            List<Team> teams = CreateTeams();           
+            List<Team> teams = CreateTeams();         
       
             List<Fighter> fighters = CreateFighters(teams);
+           
             Arena arena = CreateMap(fighters);
             BFSPathFinder pathFinder = new BFSPathFinder();
             Simulation simulation = new Simulation();
             ArenaVisualizer visualizer  = new ArenaVisualizer();           
             simulation.Arena = arena;
             simulation.Fighters = fighters;
+            
             simulation.Teams = teams;
             simulation.PathFinder = pathFinder;
             simulation.Visualizer = visualizer;
@@ -71,7 +73,7 @@ namespace ArenaProject
                     int health = int.Parse(arr1[5]);                    
                     string team = arr1[6];
                     string color =arr1[7];                    
-                    Fighter figther = new Fighter(label, attack, protection, armor, damage, health,team,color);
+                    Fighter figther = new MilleFighter(label, attack, protection, armor, damage, health, team, color);
                     foreach(Team t in teams)
                     {
                         if (t.Name == team)

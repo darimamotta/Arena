@@ -31,7 +31,7 @@ namespace ArenaProject
         public override Fighter ChooseTarget(Simulation simulation)
         {
             Fighter result  = null;
-            foreach (Fighter fighter in simulation.MilleFighters)
+            foreach (Fighter fighter in simulation.Fighters)
                 result = SelectBestTarget(result, fighter, simulation);
             return result;
         }
@@ -48,7 +48,7 @@ namespace ArenaProject
             }
             return past;
         }
-        private void MoveToTarget(Fighter target, Simulation simulation)
+        public void MoveToTarget(Fighter target, Simulation simulation)
         {
             if (target == null) return;
             Path pathToTarget = simulation.PathFinder.GetPath(this.Position, target.Position, simulation.Arena);
