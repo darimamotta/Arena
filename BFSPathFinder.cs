@@ -8,7 +8,7 @@ namespace ArenaProject
 {
     public class BFSPathFinder : IPathFinder
     {
-        public Path GetPath(Cell cellFrom, Cell cellTo, Arena arena)
+        Path IPathFinder.GetPath(Cell? cellFrom, Cell? cellTo, Arena arena)
         {
             int[,] lengthes = CalculateLengthes(cellFrom, cellTo, arena);
             return CalculatePath(cellFrom, cellTo, arena, lengthes);
@@ -78,6 +78,11 @@ namespace ArenaProject
             }           
 
             return pathFound;
+        }
+
+        Path IPathFinder.GetPath(Fighter fighter, Fighter? target, Arena myArena)
+        {
+            throw new NotImplementedException();
         }
     }
 }

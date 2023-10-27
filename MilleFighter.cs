@@ -1,41 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ArenaProject
 {
-    public class MilleFighter:Fighter
+    public class MilleFighter : Fighter
     {
         public MilleFighter(
-            char label, 
-            int attack, 
-            int protection, 
-            int armor, 
-            int damage, 
-            int health, 
-            string team, 
+            char label,
+            int attack,
+            int protection,
+            int armor,
+            int damage,
+            int health,
+            string team,
             string color
-        ) : base(label, 
-                 attack, 
-                 protection, 
-                 armor, 
-                 damage, 
-                 health, 
-                 team, 
+        ) : base(label,
+                 attack,
+                 protection,
+                 armor,
+                 damage,
+                 health,
+                 team,
                  color)
         {
         }
 
         public override Fighter ChooseTarget(Simulation simulation)
         {
-            Fighter result  = null;
+            Fighter result = null;
             foreach (Fighter fighter in simulation.Fighters)
                 result = SelectBestTarget(result, fighter, simulation);
             return result;
         }
-        private Fighter SelectBestTarget(Fighter past, Fighter current, Simulation simulation)
+        public Fighter SelectBestTarget(Fighter past, Fighter current, Simulation simulation)
         {
             if ((current.Team == Team) || (!current.IsAlive))
                 return past;
@@ -61,7 +62,28 @@ namespace ArenaProject
         }
         public override void Move(Simulation simulation)
         {
-           MoveToTarget(ChooseTarget(simulation), simulation);
+            //bool attackRes;
+            Arena myArena = simulation.Arena;
+            //renaVisualizer visualizer = simulation.Visualizer;
+            //PathFinder? pathFinder = simulation?.PathFinder;
+            
+            
+                Fighter? moveTarget = this.ChooseMoveTarget(simulation);
+                if (moveTarget != null)
+                    MoveToTarget(moveTarget, simulation);
+                
+            }
+
+        private Fighter? ChooseMoveTarget(Simulation simulation)
+        {
+            Fighter result = null;
+            foreach (Fighter fighter in simulation.Fighters)
+                result = SelectBestTarget(result, fighter, simulation);
+            return result;
+
         }
     }
-}
+
+    }
+
+

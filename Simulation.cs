@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,50 +34,54 @@ namespace ArenaProject
         }
 
         private void ExecuteSimulationStep()
-        {
-            ArenaVisualizer arenaVisualizer = new ArenaVisualizer();
-
-            bool attackRes;
-           
+        {                     
             for (int i = 0; i < Fighters.Count; i++)
-            {
+            { 
+                Fighter fighter = Fighters[i];
                 if (Fighters[i].IsAlive)
-                { 
-                    Fighter fighter = Fighters[i];
-                    Fighter target = Fighters[i].ChooseTarget(this);                    
-                    
-                    if (target == null) return;
-                    Arena myArena = Arena;
-                    Path path = PathFinder.GetPath(fighter.Position, target.Position, myArena);
-                    
-                    if (path.Length > 2)
+                {
+                    fighter.Move(this);
+                    Fighter? target = fighter.ChooseTarget(this);
+                    if(target != null)
                     {
-                        fighter.Move(this);
-                        //fighter.MoveToTarget(target,this);                      
-                    
+                        fighter.AttackOtherFighter(target);
                     }
-                    if (path.Length == 2)
-                    {
-                        int healthBefore = target.Health;
-                        attackRes = fighter.AttackOtherFighter(target);
-                        Visualizer.AddMessage($"Fighter {fighter.Label} is attacking target {target.Label}!");
-                    
-                    
-                        if (attackRes)
-                        {
-                            int damageAt = healthBefore - target.Health;
-                            Visualizer.AddMessage($"Fighter {fighter.Label} attacked target {target.Label} with damage {damageAt}!");
-                    
-                        }
-                        else { Visualizer.AddMessage($"Fighter {fighter.Label} failed in attack of target {target.Label}!"); }
-                                       
-                                        
-                    }
-                       
-                    
-                }                           
-               
-                    
+
+                    //Arena myArena = Arena; 
+                    //Fighter? target = fighter.ChooseTarget(this);
+                    //Path path = PathFinder.GetPath(fighter.Position, target.Position, myArena);
+                    //if (path.Length > 2)
+                    //{   fighter.Move(this);   
+                    //    if (target != null)
+                    //    {
+                    //        fighter.AttackOtherFighter(target);
+                    //    }  
+                    //    if (target == null) return;
+                    //
+                    //if (path.Length == 2)
+                    //{
+                    //    int healthBefore = target.Health;
+                    //    attackRes = fighter.AttackOtherFighter(target);
+                    //    Visualizer.AddMessage($"Fighter {fighter.Label} is attacking target {target.Label}!");
+                    //
+                    //
+                    //    if (attackRes)
+                    //    {
+                    //        int damageAt = healthBefore - target.Health;
+                    //        Visualizer.AddMessage($"Fighter {fighter.Label} attacked target {target.Label} with damage {damageAt}!");
+                    //
+                    //    }
+                    //    else { Visualizer.AddMessage($"Fighter {fighter.Label} failed in attack of target {target.Label}!"); }
+                    //                   
+                    //                    
+                    //}    
+                    //  
+                    //}                
+                    //
+
+                }
+
+
 
             } 
         }
