@@ -14,8 +14,8 @@ namespace ArenaProject
             Column = column;
         }
 
-        public Fighter Fighter { get; set; }
-        public Obstacle Obstacle { get; set; }
+        public Fighter? Fighter { get; set; }
+        public Obstacle? Obstacle { get; set; }
         public bool IsPassable { get { return Obstacle == null && Fighter == null; } }
         public int Line { get; private set; }
         public int Column { get; private set; }
@@ -24,9 +24,9 @@ namespace ArenaProject
         {
             return $"[{Line}, {Column}] {(IsPassable ? '+' : '-')}";
         }
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            Cell cell = obj as Cell;
+            Cell? cell = obj as Cell;
             if(cell == null) return false;
             return Line == cell.Line && Column == cell.Column;
         }

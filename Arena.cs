@@ -14,7 +14,7 @@ namespace ArenaProject
         public int Width { get { return width; } }
         public int Height { get { return height; } }
 
-        List<List<Cell>> cells;
+        List<List<Cell>> cells = null!;
 
         public Arena(int width, int height)
         {

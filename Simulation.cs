@@ -9,13 +9,13 @@ namespace ArenaProject
 {
     public class Simulation
     {
-        public string message;
-        public Arena Arena { get; set; }
-        public List<Fighter> Fighters { get; set; }
-        public List<Team> Teams { get; set; }
-        public IPathFinder PathFinder { get; set; }
-        public ArenaVisualizer Visualizer { get; set; }
-        public FileSimulationBuilder builder { get; set; }
+        public string message = null!;
+        public Arena Arena { get; set; } = null!;
+        public List<Fighter> Fighters { get; set; } = null!;
+        public List<Team> Teams { get; set; } = null!;
+        public IPathFinder PathFinder { get; set; } = null!;
+        public ArenaVisualizer Visualizer { get; set; } = null!;
+        public FileSimulationBuilder builder { get; set; } = null!;
 
 
         public void Run()
@@ -45,43 +45,9 @@ namespace ArenaProject
                     if(target != null)
                     {
                         fighter.AttackOtherFighter(target);
-                    }
-
-                    //Arena myArena = Arena; 
-                    //Fighter? target = fighter.ChooseTarget(this);
-                    //Path path = PathFinder.GetPath(fighter.Position, target.Position, myArena);
-                    //if (path.Length > 2)
-                    //{   fighter.Move(this);   
-                    //    if (target != null)
-                    //    {
-                    //        fighter.AttackOtherFighter(target);
-                    //    }  
-                    //    if (target == null) return;
-                    //
-                    //if (path.Length == 2)
-                    //{
-                    //    int healthBefore = target.Health;
-                    //    attackRes = fighter.AttackOtherFighter(target);
-                    //    Visualizer.AddMessage($"Fighter {fighter.Label} is attacking target {target.Label}!");
-                    //
-                    //
-                    //    if (attackRes)
-                    //    {
-                    //        int damageAt = healthBefore - target.Health;
-                    //        Visualizer.AddMessage($"Fighter {fighter.Label} attacked target {target.Label} with damage {damageAt}!");
-                    //
-                    //    }
-                    //    else { Visualizer.AddMessage($"Fighter {fighter.Label} failed in attack of target {target.Label}!"); }
-                    //                   
-                    //                    
-                    //}    
-                    //  
-                    //}                
-                    //
+                    }                                  
 
                 }
-
-
 
             } 
         }

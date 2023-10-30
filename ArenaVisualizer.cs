@@ -23,20 +23,17 @@ namespace ArenaProject
                     {
                         Console.Write("#");
                     }
-                    else if ((simulation.Arena.GetCell(i, j).Fighter) != null)
-                       
+                    else if (simulation.Arena.GetCell(i, j).Fighter != null)                       
                     {
-                        string col = simulation.Arena.GetCell(i, j).Fighter.Color;
-                        if (!simulation.Arena.GetCell(i, j).Fighter.IsAlive)
-                        {
-                                                                                
+                        string col = simulation.Arena.GetCell(i, j).Fighter!.Color;
+                        if (!simulation.Arena.GetCell(i, j).Fighter!.IsAlive)
+                        {                                                                                
                             Console.BackgroundColor = ConsoleColor.Red;
                             //Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), col, true);
                             //Console.Write(simulation.Arena.GetCell(i, j).Fighter.Label);
                         } 
                         Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), col, true);
-                        Console.Write(simulation.Arena.GetCell(i, j).Fighter.Label);
-                        
+                        Console.Write(simulation.Arena.GetCell(i, j).Fighter!.Label);                        
                         Console.ResetColor();                       
                     }
                     else 

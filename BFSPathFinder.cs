@@ -8,7 +8,7 @@ namespace ArenaProject
 {
     public class BFSPathFinder : IPathFinder
     {
-        Path IPathFinder.GetPath(Cell? cellFrom, Cell? cellTo, Arena arena)
+        public Path GetPath(Cell cellFrom, Cell cellTo, Arena arena)
         {
             int[,] lengthes = CalculateLengthes(cellFrom, cellTo, arena);
             return CalculatePath(cellFrom, cellTo, arena, lengthes);

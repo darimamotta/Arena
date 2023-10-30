@@ -29,14 +29,21 @@ namespace ArenaProject
         {
         }
 
-        public override Fighter ChooseTarget(Simulation simulation)
+        public override Fighter? ChooseTarget(Simulation simulation)
         {
-            Fighter result = null;
-            foreach (Fighter fighter in simulation.Fighters)
-                result = SelectBestTarget(result, fighter, simulation);
-            return result;
+            Cell posCol = simulation.Arena.GetCell(Position);
+            List<Cell> neighbors = simulation.Arena.GetNeibours(posCol);
+            foreach (Cell neighbor in neighbors)
+            {
+                if((neighbor.Fighter!=null)&&(neighbor.Fighter.Team != Team))
+                {
+                    return neighbor.Fighter;
+                }                            
+            }          
+                      
+            return null;
         }
-        public Fighter SelectBestTarget(Fighter past, Fighter current, Simulation simulation)
+        public Fighter? SelectBestTarget(Fighter? past, Fighter current, Simulation simulation)
         {
             if ((current.Team == Team) || (!current.IsAlive))
                 return past;
@@ -56,9 +63,9 @@ namespace ArenaProject
             if (pathToTarget.Length > 2)
             {
                 this.Position = new Position(pathToTarget.GetCell(1).Line, pathToTarget.GetCell(1).Column);
-            }
-            simulation.Arena.GetCell(this.Position).Fighter = this;
-            simulation.Arena.GetCell(pathToTarget.GetCell(0).Line, pathToTarget.GetCell(0).Column).Fighter = null;
+                simulation.Arena.GetCell(this.Position).Fighter = this;
+                simulation.Arena.GetCell(pathToTarget.GetCell(0).Line, pathToTarget.GetCell(0).Column).Fighter = null;
+            }                
         }
         public override void Move(Simulation simulation)
         {
@@ -76,7 +83,7 @@ namespace ArenaProject
 
         private Fighter? ChooseMoveTarget(Simulation simulation)
         {
-            Fighter result = null;
+            Fighter? result = null;
             foreach (Fighter fighter in simulation.Fighters)
                 result = SelectBestTarget(result, fighter, simulation);
             return result;

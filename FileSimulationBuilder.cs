@@ -24,7 +24,7 @@ namespace ArenaProject
             {
                 while (!reader.EndOfStream)
                 {
-                    string line = reader.ReadLine();
+                    string line = reader.ReadLine()!;
                     string[] parts = line.Split(' ');
                     string title = parts[0];
                     string teamCol = parts[1];
@@ -63,7 +63,7 @@ namespace ArenaProject
             {
                 while (!reader.EndOfStream)
                 {
-                    string line = reader.ReadLine();
+                    string line = reader.ReadLine()!;
                     string[] arr1 = line.Split(' ');
                     char label = arr1[0][0];
                     int attack = int.Parse(arr1[1]);
@@ -95,12 +95,12 @@ namespace ArenaProject
         {
             using (StreamReader reader = new StreamReader("./files/map.txt"))
             {
-                int width = int.Parse( reader.ReadLine());
-                int height = int.Parse( reader.ReadLine());
+                int width = int.Parse( reader.ReadLine()!);
+                int height = int.Parse( reader.ReadLine()!);
                 Arena arena = new Arena(width, height);
                 for (int i = 0;i<height;i++)
                 { 
-                    string mapline = reader.ReadLine();
+                    string mapline = reader.ReadLine()!;
                     for (int j = 0; j < mapline.Length; j++)
                     {
                         if (mapline[j] == '#')

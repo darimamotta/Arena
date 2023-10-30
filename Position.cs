@@ -31,9 +31,9 @@ namespace ArenaProject
         {
             return System.HashCode.Combine(Line, Column);
         }
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            Position position = obj as Position;
+            Position? position = obj as Position;
             if (position == null) return false;
             return position.Line == Line && position.Column == Column;            
         }

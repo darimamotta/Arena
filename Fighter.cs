@@ -60,8 +60,8 @@ namespace ArenaProject
         public int MaxHealth { get { return maxHealth; } }
         public const int MaxChanceValue = 100;
         public const int MinChanceValue = 5;
-        public Team Team { get; set; }
-        public Position Position { get; set; }
+        public Team? Team { get; set; }
+        public Position Position { get; set; } = null!;
         public bool IsAlive => Health > 0;
 
         public bool AttackOtherFighter(Fighter target)
