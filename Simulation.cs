@@ -44,7 +44,16 @@ namespace ArenaProject
                     Fighter? target = fighter.ChooseTarget(this);
                     if(target != null)
                     {
+                        int oldHealth = target.Health;
                         fighter.AttackOtherFighter(target);
+                        if(oldHealth - target.Health > 0)
+                        {
+                            Visualizer?.AddMessage($"{fighter.Label} attacked other fighter {target.Label} with damage {oldHealth - target.Health} and health {fighter.Health}");
+                        }
+                        else
+                            Visualizer?.AddMessage($"{fighter.Label} missed the target {target.Label}");
+
+
                     }                                  
 
                 }
