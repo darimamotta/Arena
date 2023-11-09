@@ -18,16 +18,14 @@ namespace ArenaProject
        int protection,
        int armor,
        int damage,
-       int health,
-       string team,
+       int health,     
        string color
      ) : base(label,
             attack,
             protection,
             armor,
             damage,
-            health,
-            team,
+            health,            
             color)
         {
             MinAttackDistance = minAttackDistance;

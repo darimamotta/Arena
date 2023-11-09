@@ -82,12 +82,36 @@ namespace ArenaProject
                         fighter = CreateMillefighter(teams, arrt);                       
 
                     }
+                    else if (type == "k")
+                    {
+                        fighter = CreateKiller(teams, arrt);
+
+                    }
                     result.Add(fighter);
                 }
 
             }return result;
             
 
+        }
+
+        private Fighter CreateKiller(List<Team> teams, string[] arrt)
+        {
+            char label = arrt[1][0];
+            int attack = int.Parse(arrt[2]);
+            int protection = int.Parse(arrt[3]);
+            int armor = int.Parse(arrt[4]);
+            int damage = int.Parse(arrt[5]);
+            int health = int.Parse(arrt[6]);
+            string team = arrt[7];
+            string color = arrt[8];
+            double minAttackDistance = double.Parse(arrt[9]);
+            double maxAttackDistance = double.Parse(arrt[10]);
+            int retreatDistance = int.Parse(arrt[11]);
+            int offensiveDistance = int.Parse(arrt[12]);
+            Killer killer = new Killer(minAttackDistance, maxAttackDistance, retreatDistance, offensiveDistance, label, attack, protection, armor, damage, health, color);
+            AssignFighterToTeam(teams, team, killer);
+            return killer;
         }
 
         private static MilleFighter CreateMillefighter(List<Team> teams, string[] arrt)
