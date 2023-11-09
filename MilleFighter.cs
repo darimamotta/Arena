@@ -15,16 +15,14 @@ namespace ArenaProject
             int protection,
             int armor,
             int damage,
-            int health,
-            string team,
+            int health,           
             string color
         ) : base(label,
                  attack,
                  protection,
                  armor,
                  damage,
-                 health,
-                 team,
+                 health,                 
                  color)
         {
         }
@@ -72,8 +70,7 @@ namespace ArenaProject
             //bool attackRes;
             Arena myArena = simulation.Arena;
             //renaVisualizer visualizer = simulation.Visualizer;
-            //PathFinder? pathFinder = simulation?.PathFinder;
-            
+            //PathFinder? pathFinder = simulation?.PathFinder;            
             
                 Fighter? moveTarget = this.ChooseMoveTarget(simulation);
                 if (moveTarget != null)

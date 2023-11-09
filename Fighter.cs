@@ -11,6 +11,7 @@ namespace ArenaProject
 {
     public abstract class Fighter
     {
+       
         private char label;
 
         private int attack;
@@ -23,33 +24,34 @@ namespace ArenaProject
         
         private int maxHealth;
         private static Random random = new Random();
-        private string team;
+        
         private string color;
 
 
         public Fighter(
+            
             char label,
             int attack,
             int protection,
             int armor,
             int damage,
-            int health,
-            string team,
+            int health,            
             string color
 
         )
         {
+           
             this.label = label;
             this.attack = attack;
             this.protection = protection;
             this.armor = armor;
             this.damage = damage;
             this.health = health;
-            this.maxHealth = health;
-            this.team = team;
+            this.maxHealth = health;            
             this.color = color;
         }
 
+      
         public char Label { get { return label; } }
         public int Attack { get { return attack; } }
         public string Color { get { return color; } }
