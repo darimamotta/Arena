@@ -104,6 +104,10 @@ namespace ArenaProject
         {
             health -= damage;
         }
+        public abstract string ShowTypeOfFighter();
+        
+          
+   
         public abstract Fighter? ChooseTarget(Simulation simulation);
 
         public abstract void Move(Simulation simulation);

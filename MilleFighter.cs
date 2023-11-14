@@ -86,6 +86,13 @@ namespace ArenaProject
             return result;
 
         }
+
+        public override string ShowTypeOfFighter()
+        {
+            string type = "Millefighter";
+            return type;
+           
+        }
     }
 
     }

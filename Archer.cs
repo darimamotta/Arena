@@ -50,7 +50,7 @@ namespace ArenaProject
             Cell posCol = simulation.Arena.GetCell(Position);
             foreach (Fighter fighter in fighters)
             {
-                if (fighter.Team != Team)
+                if ((fighter.Team != Team)&&(fighter.IsAlive))
                 {
 
                     Cell targetCell = simulation.Arena.GetCell(fighter.Position);
@@ -74,18 +74,23 @@ namespace ArenaProject
            
             Arena myArena = simulation.Arena;
             Fighter? target = ChooseMoveTarget(simulation);
-            if (target == null) return;            
-            Path pathToTarget = simulation.PathFinder.GetPath(this.Position, target!.Position, myArena);
-            double dist = pathToTarget.Length;
-            
-            if (dist >= OffensiveDistance)
-            {
-                MoveToTarget(this, target, simulation);
+            if (target == null) return; 
+            if (target.IsAlive)
+            { 
+                Path pathToTarget = simulation.PathFinder.GetPath(this.Position, target!.Position, myArena);
+                double dist = pathToTarget.Length;
+                
+                if (dist >= OffensiveDistance)
+                {
+                    MoveToTarget(this, target, simulation);
+                }
+                if (dist <= RetreatDistance)
+                {
+                    MoveBack(this, target, simulation);
+                }
+
             }
-            if (dist <= RetreatDistance)
-            {
-                MoveBack(this, target, simulation);
-            }
+           
         }
 
         private Fighter? ChooseMoveTarget(Simulation simulation)
@@ -95,7 +100,7 @@ namespace ArenaProject
             List<Fighter> fighters = simulation.Fighters;
             foreach (Fighter fighter in fighters)           
             {
-                if (fighter.Team != Team)
+                if ((fighter.Team != Team)&&(fighter.IsAlive))
                 { 
                    Path tdist= simulation.PathFinder.GetPath(posCol, simulation.Arena.GetCell(fighter.Position), simulation.Arena);
                    targetDistansces.Add(tdist); 
@@ -145,6 +150,11 @@ namespace ArenaProject
 
     }
 
+        public override string ShowTypeOfFighter()
+        {
+            string type = "Archer";
+            return type;
+        }
     }
 
 

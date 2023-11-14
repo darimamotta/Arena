@@ -1,6 +1,6 @@
-a a 40 5 10 2 100 Vikings Green 2 3 2 5
+a a 40 5 10 2 100 Vikings Green 2 3 2 3
 m b 45 10 15 5 50 Vikings Green
-a c 30 10 5 0 200 Eagles Blue 2 4 2 5
+a c 30 10 5 0 200 Eagles Blue 2 3 2 4
 m d 60 15 20 0 30 Eagles Blue
 k l 35 12 9 2 80 Vikings Green 2 3 3 5
-k n 37 12 8 2 79 Eagles Blue 2 4 3 4
+k n 37 12 8 2 79 Eagles Blue 2 4 3 6

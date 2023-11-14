@@ -57,14 +57,14 @@ namespace ArenaProject
                 if (fighter.IsAlive)
                 { 
                     Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), col, true); 
-                    Console.WriteLine($"Fighter {fighter.Label} has health {fighter.Health}");
+                    Console.WriteLine($"Fighter {fighter.Label} {fighter.ShowTypeOfFighter()} has health {fighter.Health}");
                 }
                 else
                 {
                     Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), col, true); ;
                     Console.BackgroundColor = ConsoleColor.Red;
                     //Console.BackgroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), col, true);
-                    Console.WriteLine($"Fighter {fighter.Label} has health 0");
+                    Console.WriteLine($"Fighter {fighter.Label} {fighter.ShowTypeOfFighter()} has health 0");
                 }
                 
                 Console.ResetColor();

@@ -1,0 +1,2 @@
+a l 35 12 9 2 80 Vikings Green 2 3 3 5
+a n 37 12 8 2 79 Eagles Blue 2 4 3 6

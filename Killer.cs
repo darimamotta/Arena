@@ -49,7 +49,7 @@ namespace ArenaProject
 
             foreach (Fighter fighter in otherfighters)
             {
-                if ((fighter != null) && (fighter.Team != Team))
+                if ((fighter != null) && (fighter.Team != Team)&&(fighter.IsAlive))
                 { 
                      
                      Cell targetCell = simulation.Arena.GetCell(fighter.Position);
@@ -66,6 +66,7 @@ namespace ArenaProject
                   
                 
             }  
+
             target = SelectBestTargetForKiller(targets);
             return target;
         }
@@ -104,6 +105,12 @@ namespace ArenaProject
                 simulation.Arena.GetCell(this.Position).Fighter = this;
                 simulation.Arena.GetCell(pathToTarget.GetCell(0).Line, pathToTarget.GetCell(0).Column).Fighter = null;
             }
+        }
+
+        public override string ShowTypeOfFighter()
+        {
+            string type = "Killer";
+            return type;
         }
     }
 }
